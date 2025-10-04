@@ -42,7 +42,7 @@ const Register = () => {
             <Typo size={16} color={colors.textLighter}>Créer un compte pour suivre toutes vos dépenses</Typo>
             <Input
                 placeholder='Entrez votre nom'
-                onChange={(value) => (name.current = value)}
+                onChange={(value) => (nameRef.current = value)}
                 icon={<Icons.UserIcon size={verticalScale(26) } color={colors.neutral300} weight='fill'/>}
             />
 
