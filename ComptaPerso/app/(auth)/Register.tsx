@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useRef, useState } from 'react'
 import ScreenWrapper from '@/components/ScreenWrapper'
 import Typo from '@/components/Typo'
@@ -9,6 +9,7 @@ import Input from '@/components/Input'
 import * as Icons from 'phosphor-react-native'
 import Button from '@/components/Button'
 import { useRouter } from 'expo-router'
+import { useAuth } from '@/contexts/authContext'
 
 const Register = () => {
 
@@ -17,6 +18,7 @@ const Register = () => {
     const passwordRef = useRef("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const {register : registerUser} = useAuth();
 
     const handleSubmit = async () => {
         if(
@@ -26,6 +28,15 @@ const Register = () => {
         ){
             alert("Veuillez remplir tous les champs");
             return;
+        }
+
+        setIsLoading(true);
+        const res = await registerUser(emailRef.current, passwordRef.current, nameRef.current);
+        setIsLoading(false);
+        console.log('resulta de register', res);
+
+        if(!res.success){
+            Alert.alert("Erreur", res.msg || "Une erreur est survenue");
         }
     }
   return (
