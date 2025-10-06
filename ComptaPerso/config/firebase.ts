@@ -12,7 +12,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDIGWF-h9-geAk34_k2BEp74z_OugAhZPo",
   authDomain: "compta-perso-c77e6.firebaseapp.com",
   projectId: "compta-perso-c77e6",
-  storageBucket: "compta-perso-c77e6.firebasestorage.app",
+  storageBucket: "compta-perso-c77e6.appspot.com", // ✅ correction ici
   messagingSenderId: "234319412893",
   appId: "1:234319412893:web:4b7cfbc347070311571e74"
 };
