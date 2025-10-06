@@ -13,25 +13,34 @@ import { useAuth } from '@/contexts/authContext'
 
 const Register = () => {
 
-    const nameRef = useRef("");
-    const emailRef = useRef("");
-    const passwordRef = useRef("");
+    const nameRef = useRef({ value: "" });
+    const emailRef = useRef({ value: "" });
+    const passwordRef = useRef({ value: "" });
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     const {register : registerUser} = useAuth();
 
     const handleSubmit = async () => {
         if(
-            !emailRef.current ||
-            !passwordRef.current ||
-            !nameRef.current
+            !emailRef.current.value ||
+            !passwordRef.current.value ||
+            !nameRef.current.value
         ){
             alert("Veuillez remplir tous les champs");
             return;
         }
 
+        //test de la connexion internet
+    //     try {
+    //     const response = await fetch('https://www.google.com');
+    //     if (!response.ok) throw new Error('No network');
+    //     } catch (error) {
+    //     Alert.alert("Erreur réseau", "Vérifiez votre connexion internet");
+    //     return;
+    // }
+
         setIsLoading(true);
-        const res = await registerUser(emailRef.current, passwordRef.current, nameRef.current);
+        const res = await registerUser(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
         setIsLoading(false);
         console.log('resulta de register', res);
 
@@ -53,20 +62,20 @@ const Register = () => {
             <Typo size={16} color={colors.textLighter}>Créer un compte pour suivre toutes vos dépenses</Typo>
             <Input
                 placeholder='Entrez votre nom'
-                onChange={(value) => (nameRef.current = value)}
+                onChange={(value) => (nameRef.current.value = value)}
                 icon={<Icons.UserIcon size={verticalScale(26) } color={colors.neutral300} weight='fill'/>}
             />
 
             <Input
                 placeholder='Entrez votre email'
-                onChange={(value) => (emailRef.current = value)}
+                onChange={(value) => (emailRef.current.value = value)}
                 icon={<Icons.AtIcon size={verticalScale(26) } color={colors.neutral300} weight='fill'/>}
             />
 
             <Input
                 placeholder='Entrez votre mot de passe'
                 secureTextEntry
-                onChange={(value) => (passwordRef.current = value)}
+                onChange={(value) => (passwordRef.current.value = value)}
                 icon={<Icons.LockIcon size={verticalScale(26) } color={colors.neutral300} weight='fill'/>}
             />
 
