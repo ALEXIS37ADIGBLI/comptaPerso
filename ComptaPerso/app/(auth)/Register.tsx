@@ -38,6 +38,7 @@ const Register = () => {
     //     Alert.alert("Erreur réseau", "Vérifiez votre connexion internet");
     //     return;
     // }
+    //test
 
         setIsLoading(true);
         const res = await registerUser(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
